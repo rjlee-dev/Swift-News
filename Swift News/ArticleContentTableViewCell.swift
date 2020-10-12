@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArticleContentTableViewCell: UITableViewCell {
+final class ArticleContentTableViewCell: UITableViewCell {
     static let reuseseIdentifier = "ArticleContentTableViewCell"
     
     @IBOutlet weak var contentLabel: UILabel!

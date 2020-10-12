@@ -28,12 +28,12 @@ enum ArticleResult {
 
 protocol APIRequestProtocol {
     static func getArticleData(onComplete: @escaping (ArticleResult) -> ())
-    static func loadThumbnail(url: String?, indexPath: IndexPath, onComplete: ((Data) -> ())?)
+    static func loadThumbnail(url: String?, onComplete: ((Data) -> ())?)
 }
 
 enum APIRequest: APIRequestProtocol {
     
-    static func loadThumbnail(url: String?, indexPath: IndexPath, onComplete:  ((Data) -> ())?) {
+    static func loadThumbnail(url: String?, onComplete:  ((Data) -> ())?) {
         guard let url = URL(string: url ?? ""), let imageData = try? Data(contentsOf: url) else { return }
         onComplete?(imageData)
     }

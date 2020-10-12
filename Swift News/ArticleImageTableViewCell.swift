@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ArticleImageTableViewCell: UITableViewCell {
+final class ArticleImageTableViewCell: UITableViewCell {
     static let reuseseIdentifier = "ArticleImageTableViewCell"
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
-    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     func configureWithImageData(_ data: Data, cellWidth: CGFloat) {
         thumbnailImageView.image = UIImage(data: data)
         if let image = thumbnailImageView.image {

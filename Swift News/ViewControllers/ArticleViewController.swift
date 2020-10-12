@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArticleViewController: UIViewController {
+final class ArticleViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var model = ArticleModel()
@@ -45,7 +45,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .image(let url) :
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticleImageTableViewCell.reuseseIdentifier) as! ArticleImageTableViewCell
-            APIRequest.loadThumbnail(url: url, indexPath: indexPath) { (data) in
+            APIRequest.loadThumbnail(url: url) { (data) in
                 cell.configureWithImageData(data, cellWidth: tableView.bounds.width)
             }
             return cell

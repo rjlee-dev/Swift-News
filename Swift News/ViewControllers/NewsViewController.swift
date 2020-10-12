@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+final class NewsViewController: UIViewController {
 
     let newsModel = NewsModel()
     var selectedArticle: Article?
@@ -54,6 +54,7 @@ class NewsViewController: UIViewController {
   
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsModel.numberOfRows()
@@ -65,7 +66,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        APIRequest.loadThumbnail(url: articleItem?.thumbnailUrl, indexPath: indexPath) { (data) in
+        APIRequest.loadThumbnail(url: articleItem?.thumbnailUrl) { (data) in
             cell.configureWithImageData(data, cellWidth: tableView.bounds.width)
         }
         cell.titleLabel.text = articleItem?.title

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsItemTableViewCell: UITableViewCell {
+final class NewsItemTableViewCell: UITableViewCell {
     static let reuseseIdentifier = "NewsItemTableViewCell"
     
     @IBOutlet weak var titleLabel: UILabel!
