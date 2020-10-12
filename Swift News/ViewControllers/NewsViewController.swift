@@ -7,8 +7,6 @@
 
 import UIKit
 
-//typealias ArticleItem = (title: String, content: String)
-
 class NewsViewController: UIViewController {
 
     let newsModel = NewsModel()

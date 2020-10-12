@@ -13,9 +13,8 @@ class ArticleViewController: UIViewController {
     var model = ArticleModel()
     
     func configure(_ articleItem: Article) {
-        model.articleItem = articleItem
+        model.addArticle(articleItem)
         navigationItem.title = model.title()
-        
     }
     
     override func viewDidLoad() {
@@ -25,7 +24,6 @@ class ArticleViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -47,9 +45,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .image(let url) :
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticleImageTableViewCell.reuseseIdentifier) as! ArticleImageTableViewCell
-            
             APIRequest.loadThumbnail(url: url, indexPath: indexPath) { (data) in
-                
                 cell.configureWithImageData(data, cellWidth: tableView.bounds.width)
             }
             return cell
@@ -62,36 +58,33 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK - Model Class
-class ArticleModel {
+final class ArticleModel {
     enum CellType {
         case image(String), content(String), none
     }
     
-    var articleItem: Article?
+    private var articleItem: Article?
+    private var cells: [CellType] = []
+    
+    func addArticle(_ article: Article) {
+        articleItem = article
+        if let thumbnail = article.thumbnailUrl {
+            cells.append(.image(thumbnail))
+        }
+        if let body = article.body {
+            cells.append(.content(body))
+        }
+    }
+    
     func title() -> String {
         return articleItem?.title ?? ""
     }
     
     func cellForIndex(_ indexPath: IndexPath) -> CellType {
-        switch indexPath.row {
-        case 0:
-            return .image(articleItem?.thumbnailUrl ?? "")
-        case 1:
-            return .content(articleItem?.body ?? "")
-        default:
-            return .none
-        }
+        return cells[indexPath.row]
     }
     
     func numberOfRows() -> Int  {
-        guard let articleItem = articleItem else {
-            return 0
-        }
-        
-        if articleItem.thumbnailUrl != nil {
-            return 2
-        } else {
-            return 1
-        }
+        return cells.count
     }
 }
