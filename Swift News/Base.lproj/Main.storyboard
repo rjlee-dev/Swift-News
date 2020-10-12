@@ -37,7 +37,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="linkColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" id="73U-1m-ipU"/>
+                                                        <constraint firstAttribute="height" priority="999" identifier="ThumbHeight" id="73U-1m-ipU"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -123,7 +123,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbh-MZ-Tdi">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" id="Oga-NJ-Vdl"/>
+                                                        <constraint firstAttribute="height" priority="999" id="Oga-NJ-Vdl"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
