@@ -33,13 +33,15 @@ protocol APIRequestProtocol {
 
 enum APIRequest: APIRequestProtocol {
     
+    private static let redditURL = "https://www.reddit.com/r/swift/.json"
+    
     static func loadThumbnail(url: String?, onComplete:  ((Data) -> ())?) {
         guard let url = URL(string: url ?? ""), let imageData = try? Data(contentsOf: url) else { return }
         onComplete?(imageData)
     }
 
     static func getArticleData(onComplete: @escaping (ArticleResult) -> ()) {
-        guard let url = URL(string: "https://www.reddit.com/r/swift/.json") else {
+        guard let url = URL(string: redditURL) else {
             return
         }
         
